@@ -3,7 +3,7 @@ export function Form(props) {
         const data = new FormData();
         data.append("file", e.target.files[0]);
 
-        fetch("/handler", {
+        fetch("/reader", {
             method: "POST",
             headers: { "X-CSRFToken": getCookie("csrftoken") },
             mode: "same-origin",

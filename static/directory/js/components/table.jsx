@@ -7,41 +7,22 @@ export function Table({ data }) {
         <div className="table-container">
             <table>
                 <thead>
-                    <TableHeader data={data} />
+                    <tr>
+                        {data.header.map((name, index) => (
+                            <th key={`${index}-${name}`}>{name}</th>
+                        ))}
+                    </tr>
                 </thead>
                 <tbody>
-                    <TableBody data={data} />
+                    {data.data.map((item, index) => (
+                        <tr key={`${index}-${item[data.header[0]]}`}>
+                            {data.header.map((head) => (
+                                <td key={`${index}-${head}`}>{item[head]}</td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
-    );
-}
-
-export function TableHeader({ data }) {
-    const keys = Object.keys(data[0]);
-
-    return (
-        <tr>
-            {keys.map((header, index) => (
-                <th key={`${index}-${header}`}>{header}</th>
-            ))}
-        </tr>
-    );
-}
-
-export function TableBody({ data }) {
-    return (
-        <>
-            {data.map((book) => (
-                <tr key={book["id"]}>
-                    <th>{book["isbn"]}</th>
-                    <th>{book["title"]}</th>
-                    <th>{book["author"]}</th>
-                    <th>{book["publisher"]}</th>
-                    <th>{book["price"]}</th>
-                    <th>{book["tel"]}</th>
-                </tr>
-            ))}
-        </>
     );
 }

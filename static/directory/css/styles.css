@@ -34,7 +34,8 @@ td {
 }
 
 .save-container {
-    text-align: end;
+    display: flex;
+    justify-content: end;
 }
 
 .save-container > * + * {

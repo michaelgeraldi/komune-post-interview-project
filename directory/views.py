@@ -8,27 +8,19 @@ from .serializers import *
 def index(request):
     return render(request, "directory/index.html")
 
-def handler(request):
+def reader(request):
     file = request.FILES["file"]
     decoded_file = file.read().decode("utf-8").splitlines()
     reader = DictReader(decoded_file, dialect=Sniffer().sniff(decoded_file[0]))
     
-    Books.objects.all().delete()
-
+    reader_array = []
     for row in reader:
-        Books.objects.create(
-            isbn = row["ISBN"],
-            title = row["Title"],
-            author = row["Author"],
-            publisher = row["Publisher"],
-            price = row["Price"],
-            tel = row["Telephone Number"],
-        )
-
-    book = Books.objects.all()
-    serializer = BooksSerializer(book, many=True)
+        reader_array.append(row)
     
-    return JsonResponse(serializer.data, safe=False)
+    return JsonResponse({"data": reader_array, "header": reader.fieldnames})
+
+def save(request):
+    return JsonResponse({"message": "success!"})
 
 def download(request):
     return JsonResponse({"message": "hello!"})

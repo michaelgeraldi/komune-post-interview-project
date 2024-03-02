@@ -13,6 +13,7 @@
 ### 14.46 - 14.54
 ### 14.59 - 16.24
 ### 16.45 - 17.00
+### 19.30 - 
 
 # Alur pengerjaan (step apa saja yang di lalui sampai mendapatkan hasil yang ada)
 1. Melakukan setup Django & React (menggunakan Vite) ke dalam project

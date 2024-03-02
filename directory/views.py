@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from csv import DictReader, Sniffer
 from .models import *
 from .serializers import *
+import json
 
 # Create your views here.
 def index(request):
@@ -17,10 +18,13 @@ def reader(request):
     for row in reader:
         reader_array.append(row)
     
-    return JsonResponse({"data": reader_array, "header": reader.fieldnames})
+    return JsonResponse({"header": reader.fieldnames, "data": reader_array})
 
 def save(request):
+    json_data = json.loads(request.body)
+    user_input = UserInput.objects.create(data=json_data)
     return JsonResponse({"message": "success!"})
 
 def download(request):
-    return JsonResponse({"message": "hello!"})
+    json_data = UserInput.objects.last()
+    return JsonResponse(json_data.data)

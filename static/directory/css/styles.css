@@ -1,0 +1,42 @@
+html {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}
+
+#root {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.parent-container > * + * {
+    margin-top: 3rem;
+}
+
+.form-box {
+    display: grid;
+    max-width: 224px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.table-container {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.save-container {
+    text-align: end;
+}
+
+.save-container > * + * {
+    margin-left: 12px;
+}

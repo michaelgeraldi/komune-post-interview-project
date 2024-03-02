@@ -1,0 +1,52 @@
+{% load django_vite %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Books Directory</title>
+
+        <!-- Django-Vite -->
+        <!-- prettier-ignore -->
+        {% vite_hmr_client %} 
+        {% vite_react_refresh %}
+
+        <!-- Static Loads -->
+        {% vite_asset "directory/js/index.jsx" %}
+        {% vite_asset "directory/css/styles.css" %}
+
+        <!-- CSRF Token -->
+        <script>
+            const csrftoken = '{{ csrf_token }}';
+        </script>
+
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+        <!-- Icons -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="{% vite_asset_url 'directory/favicon/apple-touch-icon.png' %}"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="{% vite_asset_url 'directory/favicon//favicon-32x32.png' %}"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="{% vite_asset_url 'directory/favicon/favicon-16x16.png' %}"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>

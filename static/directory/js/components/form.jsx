@@ -23,14 +23,19 @@ export function Form(props) {
 
     return (
         <div className="form-container" onSubmit={(e) => handleSubmit(e)}>
-            <form action="" className="form-box">
-                <input
-                    type="file"
-                    name="file"
-                    accept=".csv"
-                    onChange={(e) => handleChange(e)}
-                />
-            </form>
+            <div className="title">
+                <h1>CSV to JSON Converter</h1>
+            </div>
+            <div>
+                <form action="" className="form-box">
+                    <input
+                        type="file"
+                        name="file"
+                        accept=".csv"
+                        onChange={(e) => handleChange(e)}
+                    />
+                </form>
+            </div>
         </div>
     );
 }

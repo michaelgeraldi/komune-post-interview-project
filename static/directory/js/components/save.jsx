@@ -22,12 +22,12 @@ export function Save({ data, saved, updateSave }) {
         <div className="save-container">
             <div>
                 <button onClick={handleSave} disabled={saved}>
-                    Simpan
+                    Save
                 </button>
             </div>
             <div>
                 <a href={"/download"} download={"data.json"}>
-                    <button disabled={!saved}>Unduh Data</button>
+                    <button disabled={!saved}>Download</button>
                 </a>
             </div>
         </div>

@@ -11,6 +11,7 @@ export function Table({ data }) {
                         {data.header.map((name, index) => (
                             <th key={`${index}-${name}`}>{name}</th>
                         ))}
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,6 +20,9 @@ export function Table({ data }) {
                             {data.header.map((head) => (
                                 <td key={`${index}-${head}`}>{item[head]}</td>
                             ))}
+                            <td>
+                                <button>Edit</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

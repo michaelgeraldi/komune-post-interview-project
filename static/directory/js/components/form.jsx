@@ -15,7 +15,7 @@ export function Form(props) {
             .then((response) => response.json())
             .then((data) => {
                 props.updateData([]);
-                setTimeout(() => props.updateData(data), 1);
+                setTimeout(() => props.updateData(data), 0.001);
             });
     };
 

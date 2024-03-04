@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export function Table(props) {
     const data = props.data;
-
     if (data.length === 0) {
         return null;
     }

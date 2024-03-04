@@ -1,5 +1,5 @@
-export function Save({ data, saved, updateSave }) {
-    if (data.length === 0) {
+export function Save(props) {
+    if (props.data.length === 0) {
         return null;
     }
 
@@ -8,26 +8,28 @@ export function Save({ data, saved, updateSave }) {
             method: "POST",
             headers: { "X-CSRFToken": getCookie("csrftoken") },
             mode: "same-origin",
-            body: JSON.stringify(data),
+            body: JSON.stringify(props.data),
         })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
             });
 
-        updateSave(true);
+        props.updateSave(true);
     };
+
+    const trimmedFileName = props.fileName.replace(new RegExp(/\.[^/.]+$/), "");
 
     return (
         <div className="save-container">
             <div>
-                <button onClick={handleSave} disabled={saved}>
+                <button onClick={handleSave} disabled={props.saved}>
                     Save
                 </button>
             </div>
             <div>
-                <a href={"/download"} download={"data.json"}>
-                    <button disabled={!saved}>Download</button>
+                <a href={"/download"} download={`${trimmedFileName}.json`}>
+                    <button disabled={!props.saved}>Download</button>
                 </a>
             </div>
         </div>

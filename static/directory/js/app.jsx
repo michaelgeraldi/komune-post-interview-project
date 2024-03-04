@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export function App() {
     const [data, setData] = useState([]);
     const [isSaved, setIsSaved] = useState(false);
+    const [fileName, setFileName] = useState("");
 
     useEffect(() => {
         setIsSaved(false);
@@ -13,9 +14,9 @@ export function App() {
 
     return (
         <div className="parent-container">
-            <Form updateData={setData} />
-            <Table data={data} />
-            <Save data={data} saved={isSaved} updateSave={setIsSaved} />
+            <Form updateData={setData} fileName={fileName} updateFileName={setFileName} />
+            <Table data={data} updateSave={setIsSaved} />
+            <Save data={data} saved={isSaved} updateSave={setIsSaved} fileName={fileName} />
         </div>
     );
 }

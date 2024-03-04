@@ -3,6 +3,8 @@ export function Form(props) {
         const data = new FormData();
         data.append("file", e.target.files[0]);
 
+        props.updateFileName(e.target.files[0].name);
+
         fetch("/reader", {
             method: "POST",
             headers: { "X-CSRFToken": getCookie("csrftoken") },
@@ -30,10 +32,15 @@ export function Form(props) {
                 <form action="" className="form-box">
                     <input
                         type="file"
+                        id="file"
                         name="file"
                         accept=".csv"
                         onChange={(e) => handleChange(e)}
                     />
+                    <span className="file-name">{props.fileName}</span>
+                    <label htmlFor="file" className="file-label">
+                        Choose a File...
+                    </label>
                 </form>
             </div>
         </div>

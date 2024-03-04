@@ -26,10 +26,6 @@ td.td-input {
     padding: 0px 12px;
 }
 
-.td-input * {
-    box-sizing: border-box;
-}
-
 input[type="text"] {
     font-family: inherit;
     height: 100%;
@@ -180,6 +176,10 @@ h1 {
     margin-right: auto;
     margin-left: auto;
     margin-top: 1.5rem;
+}
+
+.td-input * {
+    box-sizing: border-box;
 }
 
 .save-container {

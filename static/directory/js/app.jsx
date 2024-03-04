@@ -10,13 +10,22 @@ export function App() {
 
     useEffect(() => {
         setIsSaved(false);
-    }, [data])
+    }, [data]);
 
     return (
         <div className="parent-container">
-            <Form updateData={setData} fileName={fileName} updateFileName={setFileName} />
+            <Form
+                updateData={setData}
+                fileName={fileName}
+                updateFileName={setFileName}
+            />
             <Table data={data} updateSave={setIsSaved} />
-            <Save data={data} saved={isSaved} updateSave={setIsSaved} fileName={fileName} />
+            <Save
+                data={data}
+                saved={isSaved}
+                updateSave={setIsSaved}
+                fileName={fileName}
+            />
         </div>
     );
 }

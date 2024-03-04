@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
-export function Table({ data, updateSave }) {
+export function Table(props) {
     const [bodyData, setBodyData] = useState([]);
     const [isEditing, setIsEditing] = useState([]);
+    const data = props.data;
 
     useEffect(() => {
         if (data.data) {
             setBodyData(data.data);
             setIsEditing(Array(data.data.length).fill(false));
-            console.log("hello!");
         }
-    }, [data.data]);
+    }, [data]);
 
     if (data.length === 0) {
         return null;
@@ -25,61 +25,86 @@ export function Table({ data, updateSave }) {
                 return !value;
             }
         });
-        console.log(updatedArray);
         setIsEditing(updatedArray);
     };
 
-    const handleChange = (e, index, head) => {
-        setBodyData([...bodyData, (bodyData[index][head] = e.target.value)]);
-        updateSave(false);
-    };
+    const header = data.header.map((headerName, index) => (
+        <th key={`${index}-${headerName}`}>{headerName}</th>
+    ));
+
+    const rows = data.data.map((item, index) => (
+        <tr key={index} id={index}>
+            {data.header.map((headerName) => (
+                <RowData
+                    key={`${index}-${headerName}`}
+                    isEditing={isEditing}
+                    item={item}
+                    index={index}
+                    headerName={headerName}
+                    bodyData={bodyData}
+                    updateBodyData={setBodyData}
+                    updateSave={props.updateSave}
+                />
+            ))}
+            <RowButton
+                key={`${index}-button`}
+                handleClick={handleClick}
+                isEditing={isEditing}
+                index={index}
+            />
+        </tr>
+    ));
 
     return (
         <div className="table-container">
             <table>
                 <thead>
                     <tr>
-                        {data.header.map((name, index) => (
-                            <th key={`${index}-${name}`}>{name}</th>
-                        ))}
+                        {header}
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    {data.data.map((item, index) => (
-                        <tr key={index} id={index}>
-                            {data.header.map((head) =>
-                                isEditing[index] ? (
-                                    <td
-                                        key={`${index}-${head}-input`}
-                                        className={"td-input"}
-                                    >
-                                        <input
-                                            type="text"
-                                            value={item[head]}
-                                            onChange={(e) =>
-                                                handleChange(e, index, head)
-                                            }
-                                        />
-                                    </td>
-                                ) : (
-                                    <td key={`${index}-${head}`}>
-                                        {item[head]}
-                                    </td>
-                                )
-                            )}
-                            <td key={`${index}-button`}>
-                                <button
-                                    onClick={(e) => handleClick(e)}
-                                    data-row-id={index}
-                                >
-                                    {isEditing[index] ? "Done" : "Edit"}
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                <tbody>{rows}</tbody>
             </table>
         </div>
+    );
+}
+
+export function RowData(props) {
+    const handleChange = (e, index, headerName) => {
+        props.updateBodyData([
+            ...props.bodyData,
+            (props.bodyData[index][headerName] = e.target.value),
+        ]);
+        props.updateSave(false);
+    };
+
+    if (props.isEditing[props.index]) {
+        return (
+            <td className={"td-input"}>
+                <input
+                    type="text"
+                    value={props.item[props.headerName]}
+                    onChange={(e) =>
+                        handleChange(e, props.index, props.headerName)
+                    }
+                />
+            </td>
+        );
+    }
+
+    return <td>{props.item[props.headerName]}</td>;
+}
+
+export function RowButton(props) {
+    return (
+        <td>
+            <button
+                onClick={(e) => props.handleClick(e)}
+                data-row-id={props.index}
+            >
+                {props.isEditing[props.index] ? "Done" : "Edit"}
+            </button>
+        </td>
     );
 }

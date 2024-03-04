@@ -19,7 +19,7 @@ export function App() {
                 fileName={fileName}
                 updateFileName={setFileName}
             />
-            <Table data={data} updateSave={setIsSaved} />
+            <Table data={data} updateSave={setIsSaved} updateData={setData} />
             <Save
                 data={data}
                 saved={isSaved}

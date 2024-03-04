@@ -42,7 +42,7 @@ export function Table(props) {
                     index={index}
                     headerName={headerName}
                     bodyData={bodyData}
-                    updateBodyData={setBodyData}
+                    updateData={props.updateData}
                     updateSave={props.updateSave}
                 />
             ))}
@@ -72,13 +72,8 @@ export function Table(props) {
 
 export function RowData(props) {
     const handleChange = (e, index, headerName) => {
-        /*         props.updateBodyData([
-            ...props.bodyData,
-            (props.bodyData[index][headerName] = e.target.value),
-        ]); */
-
-        props.updateBodyData(
-            props.bodyData.map((data, currentIndex) => {
+        props.updateData(
+            props.item.map((data, currentIndex) => {
                 if (currentIndex === index) {
                     return { ...data, [headerName]: e.target.value };
                 } else {

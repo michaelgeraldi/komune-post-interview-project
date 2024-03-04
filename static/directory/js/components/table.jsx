@@ -72,10 +72,20 @@ export function Table(props) {
 
 export function RowData(props) {
     const handleChange = (e, index, headerName) => {
-        props.updateBodyData([
+        /*         props.updateBodyData([
             ...props.bodyData,
             (props.bodyData[index][headerName] = e.target.value),
-        ]);
+        ]); */
+
+        props.updateBodyData(
+            props.bodyData.map((data, currentIndex) => {
+                if (currentIndex === index) {
+                    return { ...data, [headerName]: e.target.value };
+                } else {
+                    return data;
+                }
+            })
+        );
         props.updateSave(false);
     };
 
@@ -102,6 +112,11 @@ export function RowButton(props) {
             <button
                 onClick={(e) => props.handleClick(e)}
                 data-row-id={props.index}
+                style={{
+                    backgroundColor: props.isEditing[props.index]
+                        ? "rgb(52, 199, 89)"
+                        : "rgb(255, 149, 0)",
+                }}
             >
                 {props.isEditing[props.index] ? "Done" : "Edit"}
             </button>

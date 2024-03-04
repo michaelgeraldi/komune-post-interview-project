@@ -58,17 +58,33 @@ button,
     color: white;
     padding: 9px 18px;
     transition: all 100ms linear;
+    scale: 1;
 }
 
 button:hover,
 .file-label:hover {
     cursor: pointer;
-    background-color: var(--light-blue);
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
 }
 
 button:active,
 .file-label:active {
-    background-color: var(--blue);
+    scale: 0.92;
+    outline: none;
+}
+
+button:focus-visible {
+    outline: 1px solid black;
 }
 
 button:disabled {

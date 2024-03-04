@@ -1,6 +1,5 @@
 # Instruksi Penggunaan program
-1. Pastikan Python & Node.js sudah ter-install terlebih dahulu
+1. Pastikan Python sudah ter-install terlebih dahulu
 2. Lakukan proses cloning terhadap repository 
 3. Jalankan `pip install -r requirements.txt` untuk meng-install Python Packages yang dibutuhkan
-4. Jalankan `npm install` untuk mengunduh JavaScript Packages yang dibutuhkan
-5. Jalankan `python manage.py runserver`, lalu akses website melalui link yang tertera pada terminal
+4. Jalankan `python manage.py runserver`, lalu akses website melalui link yang tertera pada terminal

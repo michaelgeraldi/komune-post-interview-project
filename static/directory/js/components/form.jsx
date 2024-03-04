@@ -14,7 +14,8 @@ export function Form(props) {
         })
             .then((response) => response.json())
             .then((data) => {
-                props.updateData(data);
+                props.updateData([]);
+                setTimeout(() => props.updateData(data), 1);
             });
     };
 
@@ -23,10 +24,7 @@ export function Form(props) {
         : { flexDirection: "column", rowGap: "10px" };
 
     return (
-        <div
-            className="form-container"
-            style={formContainerStyle}
-        >
+        <div className="form-container" style={formContainerStyle}>
             <div className="title">
                 <h1 style={{ fontSize: props.fileName ? "" : "40px" }}>
                     CSV to JSON Converter
@@ -44,7 +42,10 @@ export function Form(props) {
                     {props.fileName ? (
                         <span className="file-name">{props.fileName}</span>
                     ) : null}
-                    <label htmlFor="file-input" className="file-label animate-pulse">
+                    <label
+                        htmlFor="file-input"
+                        className="file-label animate-pulse"
+                    >
                         Choose a File...
                     </label>
                 </form>

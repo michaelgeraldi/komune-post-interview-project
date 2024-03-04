@@ -1,11 +1,24 @@
+/* eslint-disable no-unused-vars */
 import { getCookie } from "../utilities/cookie";
+import { useState } from "react";
 
 export function Save(props) {
+    const [button, setButton] = useState({
+        text: "Save",
+        buttonClass: ""
+    });
+
     if (props.data.length === 0) {
         return null;
     }
 
     const handleSave = () => {
+        props.updateSave(true);
+        setButton({
+            text: "Saving...",
+            buttonClass: "button-loading",
+        });
+
         fetch("/save", {
             method: "POST",
             headers: { "X-CSRFToken": getCookie("csrftoken") },
@@ -14,10 +27,16 @@ export function Save(props) {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                setTimeout(() => {
+                    setButton({
+                        text: "Saved!",
+                        buttonClass: "button-success",
+                    });
+                    setTimeout(() => {
+                        setButton({text: "Save", buttonClass: ""});
+                    }, 2000);
+                }, 2000);
             });
-
-        props.updateSave(true);
     };
 
     const trimmedFileName = props.fileName.replace(new RegExp(/\.[^/.]+$/), "");
@@ -25,8 +44,12 @@ export function Save(props) {
     return (
         <div className="save-container">
             <div>
-                <button onClick={handleSave} disabled={props.saved}>
-                    Save
+                <button
+                    onClick={handleSave}
+                    disabled={props.saved}
+                    className={button.buttonClass}
+                >
+                    {button.text}
                 </button>
             </div>
             <div>

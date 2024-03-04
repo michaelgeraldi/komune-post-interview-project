@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function Table(props) {
-    const [isEditing, setIsEditing] = useState([]);
     const data = props.data;
 
     if (data.length === 0) {
@@ -42,7 +41,7 @@ export function Row(props) {
     const [isEditing, setIsEditing] = useState(false);
 
     return (
-        <tr id={props.index}>
+        <tr>
             {props.data.header.map((headerName) => (
                 <RowData
                     key={`${props.index}-${headerName}`}
@@ -100,11 +99,10 @@ export function RowButton(props) {
         <td>
             <button
                 onClick={props.handleClick}
-                data-row-id={props.index}
                 style={{
                     backgroundColor: props.isEditing
-                        ? "rgb(52, 199, 89)"
-                        : "rgb(255, 149, 0)",
+                        ? "var(--green)"
+                        : "var(--orange)",
                 }}
             >
                 {props.isEditing ? "Done" : "Edit"}

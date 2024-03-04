@@ -23,7 +23,7 @@ def reader(request):
 def save(request):
     json_data = json.loads(request.body)
     user_input = UserInput.objects.create(data=json_data)
-    return JsonResponse({"message": "success!"})
+    return JsonResponse({"message": "Data Saved!"})
 
 def download(request):
     json_data = UserInput.objects.last()

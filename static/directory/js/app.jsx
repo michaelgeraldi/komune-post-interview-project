@@ -10,7 +10,6 @@ export function App() {
 
     useEffect(() => {
         setIsSaved(false);
-        console.log(data);
     }, [data]);
 
     return (

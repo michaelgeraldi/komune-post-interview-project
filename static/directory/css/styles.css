@@ -4,6 +4,8 @@
     --blue: rgb(0, 122, 255);
     --neutral-white: #f5f5f5;
     --light-gray: rgb(174, 174, 178);
+    --green: rgb(52, 199, 89);
+    --orange: rgb(255, 149, 0);
 }
 
 html {
@@ -180,6 +182,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 0px 2px;
+    margin-bottom: 1rem;
 }
 
 .form-box {
@@ -191,7 +194,18 @@ h1 {
     text-align: center;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    animation: fade-in 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .td-input * {
@@ -206,4 +220,14 @@ h1 {
 
 .save-container > * + * {
     margin-left: 12px;
+}
+
+.button-loading {
+    background-color: var(--orange) !important;
+    color: white !important;
+}
+
+.button-success {
+    background-color: var(--green) !important;
+    color: white !important;
 }

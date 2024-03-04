@@ -23,10 +23,20 @@ export function Form(props) {
         console.log("Submitted!");
     };
 
+    const formContainerStyle = props.fileName
+        ? null
+        : { flexDirection: "column", rowGap: "10px" };
+
     return (
-        <div className="form-container" onSubmit={(e) => handleSubmit(e)}>
+        <div
+            className="form-container"
+            onSubmit={(e) => handleSubmit(e)}
+            style={formContainerStyle}
+        >
             <div className="title">
-                <h1>CSV to JSON Converter</h1>
+                <h1 style={{ fontSize: props.fileName ? "" : "40px" }}>
+                    CSV to JSON Converter
+                </h1>
             </div>
             <div>
                 <form action="" className="form-box">
@@ -37,8 +47,10 @@ export function Form(props) {
                         accept=".csv"
                         onChange={(e) => handleChange(e)}
                     />
-                    <span className="file-name">{props.fileName}</span>
-                    <label htmlFor="file" className="file-label">
+                    {props.fileName ? (
+                        <span className="file-name">{props.fileName}</span>
+                    ) : null}
+                    <label htmlFor="file" className="file-label animate-pulse">
                         Choose a File...
                     </label>
                 </form>

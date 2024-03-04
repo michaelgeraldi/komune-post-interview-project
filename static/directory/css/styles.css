@@ -148,7 +148,7 @@ td {
 h1 {
     font-size: 1.5rem;
     font-weight: 900;
-    line-height: 0;
+    line-height: 1;
 }
 
 #root {
@@ -163,8 +163,9 @@ h1 {
 }
 
 .form-container {
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
     padding: 0px 2px;
 }
@@ -189,8 +190,4 @@ h1 {
 
 .save-container > * + * {
     margin-left: 12px;
-}
-
-.hidden {
-    display: none;
 }

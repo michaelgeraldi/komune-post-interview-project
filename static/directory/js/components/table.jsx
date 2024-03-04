@@ -4,54 +4,23 @@ export function Table(props) {
     const [isEditing, setIsEditing] = useState([]);
     const data = props.data;
 
-    useEffect(() => {
-        if (data.data) {
-            setIsEditing(Array(data.data.length).fill(false));
-        }
-    }, [data]);
-
     if (data.length === 0) {
         return null;
     }
-
-    const handleClick = (e) => {
-        const id = e.target.dataset["rowId"];
-        const updatedArray = isEditing.map((value, index) => {
-            if (index != id) {
-                return value;
-            } else {
-                return !value;
-            }
-        });
-        setIsEditing(updatedArray);
-    };
 
     const header = data.header.map((headerName, index) => (
         <th key={`${index}-${headerName}`}>{headerName}</th>
     ));
 
-    // array "data" dibuka, maka item = object
-    const rows = data.data.map((item, index) => (
-        <tr key={index} id={index}>
-            {data.header.map((headerName) => (
-                <RowData
-                    key={`${index}-${headerName}`}
-                    isEditing={isEditing}
-                    data={data}
-                    item={item}
-                    index={index}
-                    headerName={headerName}
-                    updateData={props.updateData}
-                    updateSave={props.updateSave}
-                />
-            ))}
-            <RowButton
-                key={`${index}-button`}
-                handleClick={handleClick}
-                isEditing={isEditing}
-                index={index}
-            />
-        </tr>
+    const rows = data.data.map((currentObject, index) => (
+        <Row
+            key={index}
+            index={index}
+            data={data}
+            currentObject={currentObject}
+            updateData={props.updateData}
+            updateSave={props.updateSave}
+        />
     ));
 
     return (
@@ -69,6 +38,33 @@ export function Table(props) {
     );
 }
 
+export function Row(props) {
+    const [isEditing, setIsEditing] = useState(false);
+
+    return (
+        <tr id={props.index}>
+            {props.data.header.map((headerName) => (
+                <RowData
+                    key={`${props.index}-${headerName}`}
+                    isEditing={isEditing}
+                    data={props.data}
+                    currentObject={props.currentObject}
+                    index={props.index}
+                    headerName={headerName}
+                    updateData={props.updateData}
+                    updateSave={props.updateSave}
+                />
+            ))}
+            <RowButton
+                key={`${props.index}-button`}
+                handleClick={() => setIsEditing(!isEditing)}
+                isEditing={isEditing}
+                index={props.index}
+            />
+        </tr>
+    );
+}
+
 export function RowData(props) {
     const handleChange = (e, index, headerName) => {
         const updatedDataArray = props.data.data.map((rowItem, rowIndex) => {
@@ -82,12 +78,12 @@ export function RowData(props) {
         props.updateSave(false);
     };
 
-    if (props.isEditing[props.index]) {
+    if (props.isEditing) {
         return (
             <td className={"td-input"}>
                 <input
                     type="text"
-                    value={props.item[props.headerName]}
+                    value={props.currentObject[props.headerName]}
                     onChange={(e) =>
                         handleChange(e, props.index, props.headerName)
                     }
@@ -96,22 +92,22 @@ export function RowData(props) {
         );
     }
 
-    return <td>{props.item[props.headerName]}</td>;
+    return <td>{props.currentObject[props.headerName]}</td>;
 }
 
 export function RowButton(props) {
     return (
         <td>
             <button
-                onClick={(e) => props.handleClick(e)}
+                onClick={props.handleClick}
                 data-row-id={props.index}
                 style={{
-                    backgroundColor: props.isEditing[props.index]
+                    backgroundColor: props.isEditing
                         ? "rgb(52, 199, 89)"
                         : "rgb(255, 149, 0)",
                 }}
             >
-                {props.isEditing[props.index] ? "Done" : "Edit"}
+                {props.isEditing ? "Done" : "Edit"}
             </button>
         </td>
     );

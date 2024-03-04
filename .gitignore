@@ -8,7 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -59,13 +58,11 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 lib/
 lib64/
 parts/
-sdist/
 var/
 *.egg-info/
 .installed.cfg
@@ -107,7 +104,6 @@ __pycache__/
 local_settings.py
 
 .env
-db.sqlite3
 
 # Prettier
 .prettierignore
@@ -122,3 +118,6 @@ db.sqlite3
 !.elasticbeanstalk/*.global.yml
 
 migrations/
+
+notes.txt
+package-lock.json

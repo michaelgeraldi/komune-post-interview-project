@@ -6,7 +6,7 @@
 5. Fitur pengeditan data sebelum disimpan ke dalam JSON/database
 
 # Waktu yang Digunakan
-Waktu yang saya gunakan untuk mengerjakan tugas ini adalah selama ± 22 jam.
+Waktu yang saya gunakan untuk mengerjakan tugas ini adalah selama ± 30 jam.
 
 # Alur pengerjaan
 1. Melakukan setup Django & React (menggunakan Vite)
@@ -18,3 +18,5 @@ Waktu yang saya gunakan untuk mengerjakan tugas ini adalah selama ± 22 jam.
 7. Membuat sistem penyimpanan data ke dalam database
 8. Membuat fitur pengubahan data (editing)
 9. Merapihkan kode & melakukan pemeriksaan terhadap keseluruhan program
+10. Memperbaiki bug yang ditemukan pada program
+11. Finalisasi & persiapan proses upload program ke GitHub

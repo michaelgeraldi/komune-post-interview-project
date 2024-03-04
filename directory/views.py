@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from csv import DictReader, Sniffer
 from .models import *
-from .serializers import *
 import json
 
 # Create your views here.

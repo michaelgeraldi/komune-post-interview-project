@@ -1,0 +1,41 @@
+Buatlah satu project website, yang dapat menyelesaikan masalah berikut: 
+1. Buatlah satu halaman, dimana user dapat mengupload sebuah dokumen berformat .csv (contoh diberikan Book1 .csv).
+2. Setelah di upload, maka akan tertampil di halaman website dalam bentuk tabel, data2 yang dimasukan.
+3. Setelah user menakan tombol "simpan", data dapat di download dalam bentuk JSON.
+4. Soal Bonus - Setelah tombol simpan ditekan, maka data akan tersimpan ke database.
+5. Soal Bonus - User dapat mengedit data2 yang ada di tabel sebelum disimpan ke JSON/Database.
+
+Hasil pengerjaan akan dinilai dengan poin berikut, berdasarkan urutan yang paling penting:
+Keselesaian tugas. (Apakah sesuai dengan instruksi?)
+Kerapihan kode 
+User experience 
+Kerapihan tampilan 
+
+Format Pengumpulan:
+1. Lampirkan sebuah (atau beberapa) link github, yang berisi semua kode yang dibutuhkan untuk menjalankan program. 
+2. Instruksi yang bisa diikuti untuk menjalankan program (how.txt). 
+3. Video rekaman layar saat mengerjakan webiste yang dibuat. 
+4. Satu file teks, berjudul readme.txt, yang berisi : Apa saja yang berhasil dibuat, berapa waktu yang di pakai, serta alur pengerjaan (step apa saja yang di lalui sampai mendapatkan hasil yang ada).
+5. Harap mengumpulkan hasil pengerjaan sebelum Senin, 4 Maret 2024 Pukul 22.00 WIB. 
+
+
+----
+
+
+## 1 Maret (3 jam 28 menit)
+### 09.20 - 10.00 = 40 menit
+### 17.00 - 17.50 = 50 menit
+### 18.30 - 19.35 = 1 jam 5 menit
+### 20.30 - 10.23 = 1 jam 53 menit
+
+## 2 Maret (10 jam 32 menit)
+### 09.07 - 10.13 = 54 menit
+### 10.20 - 14.43 (min 30 menit) = 3 jam 50 menit
+### 14.46 - 14.54 = 8 menit
+### 14.59 - 16.24 = 1 jam 25 menit
+### 16.45 - 17.00 = 15 menit
+### 19.30 - 23.30 = 4 jam
+
+## 3 Maret (8 Jam)
+07.30 - 15.30 = 8 jam
+19.30 - 20.30 = 1 jam

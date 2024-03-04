@@ -115,24 +115,25 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Django-Vite configuration
+DJANGO_VITE = {
+  "default": {
+    "dev_mode": False
+  }
+}
+
+DJANGO_VITE_ASSETS_PATH = os.path.join(BASE_DIR, 'static', 'directory', 'dist')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), DJANGO_VITE_ASSETS_PATH]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static", "directory", "dist")
+STATIC_ROOT = os.path.join(BASE_DIR, "static", "root")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Django-Vite configuration
-DJANGO_VITE = {
-  "default": {
-    "dev_mode": True
-  }
-}

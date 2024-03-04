@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
 export function Table(props) {
-    const [bodyData, setBodyData] = useState([]);
     const [isEditing, setIsEditing] = useState([]);
     const data = props.data;
 
     useEffect(() => {
         if (data.data) {
-            setBodyData(data.data);
             setIsEditing(Array(data.data.length).fill(false));
         }
     }, [data]);
@@ -32,16 +30,17 @@ export function Table(props) {
         <th key={`${index}-${headerName}`}>{headerName}</th>
     ));
 
+    // array "data" dibuka, maka item = object
     const rows = data.data.map((item, index) => (
         <tr key={index} id={index}>
             {data.header.map((headerName) => (
                 <RowData
                     key={`${index}-${headerName}`}
                     isEditing={isEditing}
+                    data={data}
                     item={item}
                     index={index}
                     headerName={headerName}
-                    bodyData={bodyData}
                     updateData={props.updateData}
                     updateSave={props.updateSave}
                 />
@@ -72,15 +71,14 @@ export function Table(props) {
 
 export function RowData(props) {
     const handleChange = (e, index, headerName) => {
-        props.updateData(
-            props.item.map((data, currentIndex) => {
-                if (currentIndex === index) {
-                    return { ...data, [headerName]: e.target.value };
-                } else {
-                    return data;
-                }
-            })
-        );
+        const updatedDataArray = props.data.data.map((rowItem, rowIndex) => {
+            if (rowIndex === index) {
+                return { ...rowItem, [headerName]: e.target.value };
+            } else {
+                return rowItem;
+            }
+        });
+        props.updateData({ ...props.data, data: updatedDataArray });
         props.updateSave(false);
     };
 
